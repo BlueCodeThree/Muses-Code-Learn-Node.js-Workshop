@@ -1,9 +1,9 @@
 var express = require('express');
-var express = require('express');
 var getAllRecipes = require('./recipesDB.js').getAllRecipes;
 var getRecipe = require('./recipesDB.js').getRecipe;
 var formidable = require("express-formidable");
 var updateRecipe = require('./recipesDB.js').updateRecipe;
+var marked = require('marked');
 var server = express();
 
 
@@ -27,9 +27,15 @@ server.get('/about', function(request, response) {
     response.render('pages/about');
 });
 
+// recipe ID route
 server.get('/recipe/:id', function(request, response) {
     var recipe = getRecipe(request.params.id);
-    response.render('pages/recipe', { recipe: recipe });
+    var newRecipe = {
+      id: recipe.id,
+      name: recipe.name,
+      content: marked(recipe.content)
+   };
+    response.render('pages/recipe', { recipe: newRecipe });
   });
 
    server.get('/', function(request, response) {
