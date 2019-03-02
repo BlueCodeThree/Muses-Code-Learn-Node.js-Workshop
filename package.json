@@ -20,6 +20,7 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-formidable": "^1.2.0",
     "lowdb": "^1.0.0"
   }
 }

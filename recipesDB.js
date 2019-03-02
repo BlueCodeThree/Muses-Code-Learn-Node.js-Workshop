@@ -24,7 +24,15 @@ db.defaults({
     return recipe;
   }
 
+  function updateRecipe(recipe){
+    db.get('recipes')
+      .find({id: recipe.id})
+      .assign({ name: recipe.name, content: recipe.content})
+      .write();
+  }
+
   module.exports = {
     getAllRecipes: getAllRecipes,
     getRecipe: getRecipe,
+    updateRecipe: updateRecipe
   };

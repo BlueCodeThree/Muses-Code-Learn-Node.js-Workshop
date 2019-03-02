@@ -38,6 +38,20 @@ server.get('/recipe/:id', function(request, response) {
       response.send("Carlie, you are doing amazing here")
   })
 
+//   server.get('/admin', function(request, response) {
+//     response.render('pages/admin');
+// });
+
+server.get('/admin', function(request, response){
+    var recipes = getAllRecipes();
+    response.render('pages/admin/index', {recipes: recipes});
+  });
+
+server.get('/admin/recipe/:id/edit', function(request, response){
+    var recipe = getRecipe(request.params.id);
+    response.render('pages/admin/edit', {recipe: recipe})
+});
+
 server.listen(3000, function () {
     console.log('Server has started listening on port 3000.');
 });
