@@ -3,7 +3,7 @@ Workshop with Muses Code on Node.js,  where I created a website with Node.js and
 
 The website was a simple recipe website, with adding, editing and deleting recipes in an admin area
 
-##Things I Learnt
+## Things I Learnt
 
 * How to set up a project
 * Creating a server
