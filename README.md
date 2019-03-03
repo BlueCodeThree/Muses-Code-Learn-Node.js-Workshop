@@ -1,4 +1,6 @@
-# Muses-Code-Learn-Node.js-Workshop
+completed 3 March 2019
+
+# Muses Code Workshop on Node.js
 Workshop with Muses Code on Node.js,  where I created a website with Node.js and Express.
 
 The website was a simple recipe website, with adding, editing and deleting recipes in an admin area
