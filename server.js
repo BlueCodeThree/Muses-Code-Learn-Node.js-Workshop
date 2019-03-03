@@ -4,6 +4,7 @@ var getRecipe = require('./recipesDB.js').getRecipe;
 var formidable = require("express-formidable");
 var updateRecipe = require('./recipesDB.js').updateRecipe;
 var addRecipe = require('./recipesDB.js').addRecipe;
+var deleteRecipe = require('./recipesDB.js').deleteRecipe;
 var marked = require('marked');
 var server = express();
 
@@ -90,6 +91,12 @@ server.post('/admin/recipe/:id', function(request, response){
       content: ''
     };
     response.render('pages/admin/new', {recipe: newRecipe})
+  });
+
+  // route to delete a recipe
+  server.get('/admin/recipe/:id/delete', function(request, response){
+    deleteRecipe(request.params.id);
+    response.redirect('/admin');
   });
 
 server.listen(3000, function () {

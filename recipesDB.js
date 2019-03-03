@@ -52,9 +52,17 @@ db.defaults({
       .write();
   }
 
+  // function to delete a recipe
+  function deleteRecipe(id){
+    db.get('recipes')
+      .remove({id: parseInt(id)})
+      .write();
+  }
+
   module.exports = {
     getAllRecipes: getAllRecipes,
     getRecipe: getRecipe,
     updateRecipe: updateRecipe,
-    addRecipe: addRecipe
+    addRecipe: addRecipe,
+    deleteRecipe: deleteRecipe
   };
