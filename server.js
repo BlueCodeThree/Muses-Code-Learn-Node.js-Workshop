@@ -3,6 +3,7 @@ var getAllRecipes = require('./recipesDB.js').getAllRecipes;
 var getRecipe = require('./recipesDB.js').getRecipe;
 var formidable = require("express-formidable");
 var updateRecipe = require('./recipesDB.js').updateRecipe;
+var addRecipe = require('./recipesDB.js').addRecipe;
 var marked = require('marked');
 var server = express();
 
@@ -62,6 +63,16 @@ server.get('/admin/recipe/:id/edit', function(request, response){
     response.render('pages/admin/edit', {recipe: recipe})
 });
 
+// post the new recipe, adding the new recipe, route to save the '
+server.post('/admin/recipe/new', function(request, response){
+    var recipe = {
+      name: request.fields.name,
+      content: request.fields.content
+    };
+    addRecipe(recipe);
+    response.redirect('/admin');
+  });
+
 server.post('/admin/recipe/:id', function(request, response){
     updateRecipe({
       id: parseInt(request.params.id),
@@ -69,6 +80,16 @@ server.post('/admin/recipe/:id', function(request, response){
       content: request.fields.content
     });
     response.redirect('/admin');
+  });
+
+
+  // route to adding a new recipe
+  server.get('/admin/recipe/new', function(request, response){
+    var newRecipe = {
+      name: '',
+      content: ''
+    };
+    response.render('pages/admin/new', {recipe: newRecipe})
   });
 
 server.listen(3000, function () {
